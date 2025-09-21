@@ -1,0 +1,1 @@
+Aplication toDo_List for StockManager.
