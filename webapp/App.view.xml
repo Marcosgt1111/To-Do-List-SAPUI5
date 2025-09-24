@@ -1,9 +1,29 @@
 <mvc:View
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
-    controllerName="ui5.quickstart.controller.App">
-    <Button
-    text="increment by 1"
-    press=".incrementBy1" />
-    <Text id="counter" text="0"/>
+    controllerName="ui5.quickstart.controller.App"
+    xmlns:layout="sap.ui.layout">
+   
+    <layout:HorizontalLayout class="sapUiSmallMargin">
+        <GenericTile header="Tarefas Atrasadas" subheader="Contagem baseada no prazo"
+        press="onShowOverdue">
+        <TileContent>
+            <NumericContent value="{/kpi/overdue}" state="Error"/>
+        </TileContent>
+        </GenericTile>
+
+        <GenericTile header="Para hoje" subheader="Tarefas com prazo hoje">
+            <TileContent>
+                <NumericContent value="{/kpi/today}" state="Information"/>
+            </TileContent>
+        </GenericTile>
+
+        <GenericTile header="Amanhã (D+1)" subheader="Tarefas com prazo amanhã">
+            <TileContent>
+                <NumericContent value="{/kpi/tomorrow}" state="Success"/>
+            </TileContent>
+        </GenericTile>
+    </layout:HorizontalLayout>
+
+    
 </mvc:View>
