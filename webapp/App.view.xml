@@ -2,28 +2,47 @@
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
     controllerName="ui5.quickstart.controller.App"
-    xmlns:layout="sap.ui.layout">
-   
+    xmlns:layout="sap.ui.layout"
+    xmlns:tnt="sap.tnt"
+    xmlns:core="sap.ui.core">
+    
+    <!--KPIs-->
     <layout:HorizontalLayout class="sapUiSmallMargin">
-        <GenericTile header="Tarefas Atrasadas" subheader="Contagem baseada no prazo"
+        <GenericTile header="Falta no Estoque" subheader="Contagem baseada nas quantidades em estoque"
         press="onShowOverdue">
         <TileContent>
             <NumericContent value="{/kpi/overdue}" state="Error"/>
         </TileContent>
         </GenericTile>
 
-        <GenericTile header="Para hoje" subheader="Tarefas com prazo hoje">
+        <GenericTile header="Em Estoque" subheader="Pronto para o uso">
             <TileContent>
                 <NumericContent value="{/kpi/today}" state="Information"/>
             </TileContent>
         </GenericTile>
 
-        <GenericTile header="Amanhã (D+1)" subheader="Tarefas com prazo amanhã">
+        <GenericTile header="Pedidos" subheader="item com prazo marcado">
             <TileContent>
                 <NumericContent value="{/kpi/tomorrow}" state="Success"/>
             </TileContent>
         </GenericTile>
     </layout:HorizontalLayout>
+
+    <!--Forms-->
+
+    <Toolbar class="sapUiMediumMarginTop">
+        <Input id="taskInput" placeholder="O que precisa ser feito?" width="40%"/>
+        <Select id="prioritySelect" width="20%">
+          <items>
+            <core:Item key="low" text="Baixa"/>
+            <core:Item key="medium" text="Média"/>
+            <core:Item key="high" text="Alta"/>
+            <core:Item key="critical" text="Crítica"/>
+          </items>
+        </Select>
+        <DatePicker id="datePicker" width="20%" placeholder="dd/mm/aaaa"/>
+        <Button text="Adicionar" type="Emphasized" press=".onAddTask"/>
+    </Toolbar>
 
     
 </mvc:View>
