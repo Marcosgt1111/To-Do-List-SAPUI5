@@ -31,7 +31,6 @@ Abra seu terminal ou prompt de comando e clone o projeto do GitHub:
 
 Bash
 
-git clone https://www.youtube.com/shorts/apr341idq8U
 cd nome-do-repositorio
 2. Instalar Dependências
 Instale as dependências do Node.js, que incluem as bibliotecas OpenUI5 configuradas no ui5.yaml:
