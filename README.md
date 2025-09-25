@@ -1,3 +1,8 @@
+![foto1](https://github.com/Marcosgt1111/To-Do-List-SAPUI5/blob/main/print%20task%20mde.png?raw=true)
+
+![foto2](https://github.com/Marcosgt1111/To-Do-List-SAPUI5/blob/main/print%20task%20mde%202.png?raw=true)
+
+
 📦 SAP UI5 To-Do List: Gerenciamento de Tarefas de Estoque
 📝 Visão Geral do Projeto
 Este projeto é uma Lista de Tarefas (To-Do List) desenvolvida integralmente em SAP UI5 (seguindo o padrão MVC) e alinhada com as diretrizes de design SAP Fiori. O aplicativo foi contextualizado para o cenário de Manutenção de Estoque, onde as tarefas representam atividades logísticas (recebimento, reabastecimento, verificação de prazo, etc.).
