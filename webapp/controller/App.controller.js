@@ -1,14 +1,25 @@
 sap.ui.define([
-  "sap/ui/core/mvc/Controller"
-], function (Controller) {
+  "sap/ui/core/mvc/Controller",
+  "sap/ui/model/json/JSONModel",
+  "sap/m/MessageToast"
+], function (Controller, JSONModel, MessageToast) {
   "use strict";
 
   return Controller.extend("ui5.quickstart.controller.App", {
-    incrementBy1: function () {
-      let myTextElem = this.getView().byId("counter");
-      let myNum = parseInt(myTextElem.getText());
-      let myNewNum = myNum + 1;
-      myTextElem.setText(myNewNum);
+    onInit: function () {
+      const oData = {
+        kpi: {
+          overdue: 0;
+          today: 5,
+          tomorrow: 10
+        },
+        tasks: []
+      };
+
+      const oModel = new JSONModel(oData);
+      this.getView().setModel(oModel);
+    },
+    onAddTask: function () {
     }
   });
 });

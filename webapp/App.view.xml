@@ -44,5 +44,26 @@
         <Button text="Adicionar" type="Emphasized" press=".onAddTask"/>
     </Toolbar>
 
+    <!--Filtros-->
+
+    <SegmentedButton selectionChange=".onFilterTasks" class="sapUiSmallMargin">
+        <items>
+          <SegmentedButtonItem key="all" text="Todos"/>
+          <SegmentedButtonItem key="open" text="Abertos"/>
+          <SegmentedButtonItem key="done" text="Concluídos"/>
+        </items>
+      </SegmentedButton>
+
+      <List id="taskList" items="{/tasks}">
+        <CustomListItem>
+          <HBox justifyContent="SpaceBetween" alignItems="Center">
+            <VBox>
+              <Text text="{description}" />
+              <ObjectStatus text="{priority}" state="{priorityState}" />
+            </VBox>
+            <Text text="{date}" />
+          </HBox>
+        </CustomListItem>
+      </List>
     
 </mvc:View>
