@@ -1,6 +1,27 @@
 {
-  "_version": "1.58.0",
   "sap.app": {
-    "id": "ui5.quickstart"
+    "id": "todo",
+    "type": "application",
+    "title": "To-Do List",
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {},
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "todo.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
   }
 }

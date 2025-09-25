@@ -3,27 +3,26 @@
     xmlns:mvc="sap.ui.core.mvc"
     controllerName="ui5.quickstart.controller.App"
     xmlns:layout="sap.ui.layout"
-    xmlns:tnt="sap.tnt"
     xmlns:core="sap.ui.core">
     
     <!--KPIs-->
     <layout:HorizontalLayout class="sapUiSmallMargin">
         <GenericTile header="Falta no Estoque" subheader="Contagem baseada nas quantidades em estoque"
-        press="onShowOverdue">
+        press=".onShowOverdue">
         <TileContent>
-            <NumericContent value="{/kpi/overdue}" state="Error"/>
+            <NumericContent value="{/kpi/overdue}"/>
         </TileContent>
         </GenericTile>
 
         <GenericTile header="Em Estoque" subheader="Pronto para o uso">
             <TileContent>
-                <NumericContent value="{/kpi/today}" state="Information"/>
+                <NumericContent value="{/kpi/today}"/>
             </TileContent>
         </GenericTile>
 
         <GenericTile header="Pedidos" subheader="item com prazo marcado">
             <TileContent>
-                <NumericContent value="{/kpi/tomorrow}" state="Success"/>
+                <NumericContent value="{/kpi/tomorrow}"/>
             </TileContent>
         </GenericTile>
     </layout:HorizontalLayout>
@@ -40,7 +39,11 @@
             <core:Item key="critical" text="Crítica"/>
           </items>
         </Select>
-        <DatePicker id="datePicker" width="20%" placeholder="dd/mm/aaaa"/>
+        <DatePicker 
+          id="datePicker" 
+          width="20%" 
+          placeholder="dd/MM/aa"
+          displayFormat="dd/MM/yy"/>
         <Button text="Adicionar" type="Emphasized" press=".onAddTask"/>
     </Toolbar>
 
@@ -55,11 +58,11 @@
       </SegmentedButton>
 
       <List id="taskList" items="{/tasks}">
-        <CustomListItem>
+        <CustomListItem type="Active">
           <HBox justifyContent="SpaceBetween" alignItems="Center">
             <VBox>
               <Text text="{description}" />
-              <ObjectStatus text="{priority}" state="{priorityState}" />
+              <ObjectStatus text="{priority}" state="{priorityState}" class="sapUiTinyMarginTop"/>
             </VBox>
             <Text text="{date}" />
           </HBox>
