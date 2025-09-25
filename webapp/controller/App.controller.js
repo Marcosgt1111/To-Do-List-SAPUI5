@@ -29,27 +29,58 @@ sap.ui.define([
       const oTaskInput = oView.byId("taskInput");
       const sTaskDescription = oTaskInput.getValue();
       const oPrioritySelect = oView.byId("prioritySelect");
-      const sPriority = oPrioritySelect.getSelectedItem().getText();
+      const oSelectedItem = oPrioritySelect.getSelectedItem();
       const oDatePicker = oView.byId("datePicker");
       const sDate = oDatePicker.getValue();
 
       // Validação: verifica se a desc da tarefa não está vazia
       if (!sTaskDescription.trim()) {
-        MessageToast.show("Por favor, insira a descrição da tarefa");
+        MessageToast.show("Por favor, insira a descrição da tarefa.");
         return;
+      }
+
+      // Mapeia a chave da prioridade para um estado (cor) e texto
+      const sPriorityKey = oSelectedItem.getKey();
+      const sPriorityText = oSelectedItem.getText();
+      let sPriorityState;
+
+      switch (sPriorityKey) {
+        case "critical":
+        case "high":
+          sPriorityState = "Error"; // Vermelho
+          break;
+        case "medium":
+          sPriorityState = "Warning"; // Amarelo
+          break;
+        default:
+          sPriorityState = "Success"; // Verde para "Baixa"
       }
 
       const aTasks = oModel.getProperty("/tasks");
       
       aTasks.unshift({
         description: sTaskDescription,
-        priority: sPriority,
-        date: sDate
+        priority: sPriorityText,
+        date: sDate,
+        priorityState: sPriorityState 
       });
 
       oModel.setProperty("/tasks", aTasks);
+
+      // Limpa os campos de entrada
       oTaskInput.setValue("");
       oDatePicker.setValue("");
+    },
+
+    onDeleteTask: function (oEvent) {
+      const oModel = this.getView().getModel();
+      const aTasks = oModel.getProperty("/tasks");
+      const oItemToDelete = oEvent.getSource().getBindingContext().getObject();
+
+      // Encontra e remove o item da lista
+      const aUpdatedTasks = aTasks.filter(task => task !== oItemToDelete);
+
+      oModel.setProperty("/tasks", aUpdatedTasks);
     }
   });
 });

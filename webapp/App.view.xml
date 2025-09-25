@@ -7,22 +7,22 @@
     
     <!--KPIs-->
     <layout:HorizontalLayout class="sapUiSmallMargin">
-        <GenericTile header="Falta no Estoque" subheader="Contagem baseada nas quantidades em estoque"
+        <GenericTile class="sapUiSmallMargin" header="Falta no Estoque" subheader="Contagem baseada nas quantidades em estoque"
         press=".onShowOverdue">
         <TileContent>
-            <NumericContent value="{/kpi/overdue}"/>
+            <NumericContent value="{/kpi/overdue}" state="Error"/>
         </TileContent>
         </GenericTile>
 
-        <GenericTile header="Em Estoque" subheader="Pronto para o uso">
+        <GenericTile class="sapUiSmallMargin" header="Em Estoque" subheader="Pronto para o uso">
             <TileContent>
-                <NumericContent value="{/kpi/today}"/>
+                <NumericContent value="{/kpi/today}" state="Information"/>
             </TileContent>
         </GenericTile>
 
-        <GenericTile header="Pedidos" subheader="item com prazo marcado">
+        <GenericTile class="sapUiSmallMargin" header="Pedidos" subheader="item com prazo marcado">
             <TileContent>
-                <NumericContent value="{/kpi/tomorrow}"/>
+                <NumericContent value="{/kpi/tomorrow}" state="Success"/>
             </TileContent>
         </GenericTile>
     </layout:HorizontalLayout>
@@ -60,11 +60,16 @@
       <List id="taskList" items="{/tasks}">
         <CustomListItem type="Active">
           <HBox justifyContent="SpaceBetween" alignItems="Center">
-            <VBox>
-              <Text text="{description}" />
-              <ObjectStatus text="{priority}" state="{priorityState}" class="sapUiTinyMarginTop"/>
-            </VBox>
-            <Text text="{date}" />
+            <HBox alignItems="Center" class="sapUiSmallMarginBeginEnd">
+                <VBox>
+                    <Text text="{description}" />
+                    <ObjectStatus text="{priority}" state="{priorityState}" class="sapUiTinyMarginTop"/>
+                </VBox>
+            </HBox>
+            <HBox alignItems="Center" class="sapUiSmallMarginBeginEnd">
+                <Text text="{date}" class="sapUiSmallMarginEnd"/>
+                <core:Icon src="sap-icon://delete" press=".onDeleteTask" color="#d00" tooltip="Remover Tarefa"/>
+            </HBox>
           </HBox>
         </CustomListItem>
       </List>
