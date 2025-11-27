@@ -1,7 +1,8 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/model/json/JSONModel",
-  "sap/m/MessageToast"
+  "sap/m/MessageToast",
+  "sap/m/MessageBox"
 ], function (Controller, JSONModel, MessageToast) {
   "use strict";
 
@@ -77,8 +78,23 @@ sap.ui.define([
       const aTasks = oModel.getProperty("/tasks");
       const oItemToDelete = oEvent.getSource().getBindingContext().getObject();
 
-      // Encontra e remove o item da lista
-      const aUpdatedTasks = aTasks.filter(task => task !== oItemToDelete);
+      sap.m.MessageBox.confirm(
+      "Tem certeza que deseja apagar esta tarefa?",
+      {
+        title: "Confirmar exclusão",
+        actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
+        emphasizedAction: sap.m.MessageBox.Action.OK,
+        onClose: function (sAction) {
+          if (sAction === sap.m.MessageBox.Action.OK) {
+            // Encontra e remove o item da lista
+            const aUpdatedTasks = aTasks.filter(task => task !== oItemToDelete);
+            oModel.setProperty("/tasks", aUpdatedTasks);
+
+            sap.m.MessageToast.show("Tarefa excluída.");
+          }
+        }
+      }
+    );
 
       oModel.setProperty("/tasks", aUpdatedTasks);
     }
