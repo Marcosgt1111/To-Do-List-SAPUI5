@@ -62,9 +62,6 @@ sap.tnt
 
 themelib_sap_horizon (Tema Fiori moderno)
 
-📌 Estrutura do Projeto (MVC)
-O projeto segue a estrutura padrão Model-View-Controller (MVC) do SAP UI5:
-
 ├── webapp/
 │   ├── controller/         # Contém a lógica (onInit, onAddTask, etc.)
 │   │   └── Main.controller.js
